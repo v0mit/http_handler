@@ -5,7 +5,7 @@ Created on 17. aug. 2011
 '''
 import urllib, urllib2
 
-class _http_handler():
+class http_handler():
     def __init__(self, proxy=None):
         
         if proxy:
@@ -14,15 +14,19 @@ class _http_handler():
         else:
             self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
             
-        self.user_agent = 'http_handler.v1.1 v0mit@darkpy.net'
+        self.user_agent = 'http_handler.Py2.v1.2 v0mit@darkpy.net'
         urllib2.install_opener(self.opener)
 
     def request(self, url, data=None):
         req = urllib2.Request(url)
         req.add_header('User-Agent', self.user_agent)
         
-        if data != None:
-            data = urllib.urlencode(data)
+        if data:
+            try:
+                data = urllib.urlencode(data)
+            except TypeError as errno:
+                raise HTTPError("Invalid data: {0}".format(errno))
+
             try:
                 response = self.opener.open(req,data)
             except urllib2.URLError as errno:              
