@@ -5,7 +5,7 @@ Created on 17. aug. 2011
 '''
 import urllib, urllib2
 
-class _http_handler():
+class http_handler():
     def __init__(self, proxy=None):
         
         if proxy:

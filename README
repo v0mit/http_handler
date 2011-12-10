@@ -1,0 +1,36 @@
+http_handler.py README
+
+http_handler module handels basic http uses in both python 2 and 3.
+It is used on websites that requires cookies, or need data.
+The module will hold any cookies, so you can reuse the same object,
+with the same cookies. This is usefull for sites that uses cookies
+too check if you are logged in.
+
+The Python 2 version of the module also has proxy support. 
+To use a Sock4/5 proxy you will need the socks module. If
+you don't have the socks module, you can get it here:
+
+    http://socksipy.sourceforge.net/
+
+Some examples on how to use http_handler.
+
+Requesting a URL and getting the returned data:
+
+    import http_handler
+                         
+    h = http_handler.http_handler()
+    data = h.request("http://google.com")
+
+Using a proxy for the request:
+
+    import http_handler
+                     
+    h = http_handler.http_handler(("SOCK", "your.sock.server.com:1080"))
+    data = h.request("http://google.com")
+
+Sending data:
+
+    import http_handler
+                         
+    h = http_handler.http_handler()
+    data = h.request("http://somesite.net/yourname.php", {"name":"v0mit"})
